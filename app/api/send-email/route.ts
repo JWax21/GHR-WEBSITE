@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "onboarding@resend.dev",
+        from: "GHR-SITE <onboarding@resend.dev>",
         to: "josh@grovehillresearch.com",
         subject: "New GHR Inquiry",
         html: `
