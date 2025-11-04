@@ -2,7 +2,6 @@
   "name": "grove-hill-research",
   "version": "1.0.0",
   "description": "Grove Hill Research landing page",
-  "type": "module",
   "scripts": {
     "dev": "node server.js"
   },

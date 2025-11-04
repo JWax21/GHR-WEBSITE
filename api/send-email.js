@@ -1,9 +1,8 @@
 // API endpoint for sending emails via Resend
 // This can be deployed as a serverless function (Vercel, Netlify, etc.)
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
+  const RESEND_API_KEY = process.env.RESEND_API_KEY;
   // Enable CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
@@ -66,4 +65,4 @@ export default async function handler(req, res) {
       error: "Internal server error",
     });
   }
-}
+};

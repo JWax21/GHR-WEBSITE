@@ -1,12 +1,6 @@
-import express from "express";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const express = require('express');
+const path = require('path');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,32 +9,32 @@ app.use(express.json());
 app.use(express.static(__dirname));
 
 // API endpoint for sending emails via Resend
-app.post("/api/send-email", async (req, res) => {
+app.post('/api/send-email', async (req, res) => {
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
   try {
     const { email } = req.body;
 
     if (!email) {
-      return res.status(400).json({ error: "Email is required" });
+      return res.status(400).json({ error: 'Email is required' });
     }
 
     if (!RESEND_API_KEY) {
-      console.error("RESEND_API_KEY is not set");
-      return res.status(500).json({ error: "Server configuration error" });
+      console.error('RESEND_API_KEY is not set');
+      return res.status(500).json({ error: 'Server configuration error' });
     }
 
     // Send email via Resend API
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
       headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: "onboarding@resend.dev",
+        from: 'onboarding@resend.dev',
         to: email,
-        subject: "Welcome to Grove Hill Research",
+        subject: 'Welcome to Grove Hill Research',
         html: `
           <h1>Welcome to Grove Hill Research</h1>
           <p>Thank you for your interest!</p>
@@ -51,9 +45,9 @@ app.post("/api/send-email", async (req, res) => {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Resend API error:", data);
+      console.error('Resend API error:', data);
       return res.status(response.status).json({
-        error: data.message || "Failed to send email",
+        error: data.message || 'Failed to send email',
       });
     }
 
@@ -62,9 +56,9 @@ app.post("/api/send-email", async (req, res) => {
       messageId: data.id,
     });
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error('Error sending email:', error);
     return res.status(500).json({
-      error: "Internal server error",
+      error: 'Internal server error',
     });
   }
 });
