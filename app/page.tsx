@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
+import { IoIosMail } from "react-icons/io";
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -113,7 +113,7 @@ export default function Home() {
         className={`contact-btn ${showForm || showSuccessIcon ? "hide" : ""}`}
         onClick={handleContactClick}
       >
-        <IoMdMail />
+        <IoIosMail />
       </button>
 
       <h1>GROVE HILL RESEARCH</h1>
