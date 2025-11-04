@@ -4,13 +4,10 @@
   "description": "Grove Hill Research landing page",
   "type": "module",
   "scripts": {
-    "dev": "node server.js",
-    "build": "echo 'Ready for deployment'",
-    "start": "node server.js"
+    "dev": "node server.js"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "resend": "^3.0.0"
+    "express": "^4.18.2"
   }
 }
