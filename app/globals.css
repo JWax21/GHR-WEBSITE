@@ -97,9 +97,9 @@ button.submit-btn {
   padding: 0.5rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #ffffff;
-  background-color: #000000;
-  border: none;
+  color: #cccccc;
+  background-color: transparent;
+  border: 2px solid #cccccc;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -110,6 +110,7 @@ button.submit-btn {
 button.submit-btn svg {
   width: 1.5rem;
   height: 1.5rem;
+  fill: #cccccc;
 }
 
 button.submit-btn:active {
