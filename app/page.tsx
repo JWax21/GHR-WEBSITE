@@ -80,7 +80,7 @@ export default function Home() {
       showMessage("Email sent successfully!", "success");
       setEmail("");
 
-      // Show success icon flash and close form
+      // Show success icon flash, hide form and email button
       setShowForm(false);
       setShowSuccessIcon(true);
       setTimeout(() => {
@@ -110,7 +110,7 @@ export default function Home() {
 
       <button
         ref={contactBtnRef}
-        className={`contact-btn ${showForm ? "hide" : ""}`}
+        className={`contact-btn ${showForm || showSuccessIcon ? "hide" : ""}`}
         onClick={handleContactClick}
       >
         <IoMdMail />
