@@ -14,11 +14,13 @@ A clean, minimal Next.js landing page with email capture functionality using Res
 ## Quick Start
 
 1. **Install dependencies:**
+
 ```bash
 npm install
 ```
 
 2. **Create a `.env.local` file** in the root directory:
+
 ```bash
 RESEND_API_KEY=your_actual_api_key_here
 ```
@@ -26,6 +28,7 @@ RESEND_API_KEY=your_actual_api_key_here
 3. **Get your Resend API key** from [resend.com](https://resend.com)
 
 4. **Run the development server:**
+
 ```bash
 npm run dev
 ```
@@ -66,6 +69,7 @@ npm start
 ## Customize Email
 
 Edit `app/api/send-email/route.ts` to customize:
+
 - `from` address (must be a verified domain in Resend)
 - `to` address (recipient email)
 - `subject` line

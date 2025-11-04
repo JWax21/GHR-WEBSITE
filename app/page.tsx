@@ -1,15 +1,17 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from "react";
+import { FaCircleCheck } from "react-icons/fa6";
 
 export default function Home() {
-  const [showForm, setShowForm] = useState(false)
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState({ text: '', type: '' })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const emailInputRef = useRef<HTMLInputElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const contactBtnRef = useRef<HTMLButtonElement>(null)
+  const [showForm, setShowForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState({ text: "", type: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessIcon, setShowSuccessIcon] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const contactBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -20,83 +22,93 @@ export default function Home() {
         !contactBtnRef.current.contains(e.target as Node)
       ) {
         if (showForm) {
-          setShowForm(false)
+          setShowForm(false);
         }
       }
-    }
+    };
 
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [showForm])
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [showForm]);
 
   const handleContactClick = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    setShowForm(true)
+    e.stopPropagation();
+    setShowForm(true);
     setTimeout(() => {
-      emailInputRef.current?.focus()
-    }, 200)
-  }
+      emailInputRef.current?.focus();
+    }, 200);
+  };
 
-  const showMessage = (text: string, type: 'success' | 'error') => {
-    setMessage({ text, type })
+  const showMessage = (text: string, type: "success" | "error") => {
+    setMessage({ text, type });
     setTimeout(() => {
-      setMessage({ text: '', type: '' })
-    }, 5000)
-  }
+      setMessage({ text: "", type: "" });
+    }, 5000);
+  };
 
   const handleSubmit = async () => {
-    const emailValue = email.trim()
+    const emailValue = email.trim();
 
     if (!emailValue) {
-      showMessage('Please enter an email address', 'error')
-      return
+      showMessage("Please enter an email address", "error");
+      return;
     }
 
     if (!emailValue.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      showMessage('Please enter a valid email address', 'error')
-      return
+      showMessage("Please enter a valid email address", "error");
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
+      const response = await fetch("/api/send-email", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email: emailValue }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send email')
+        throw new Error(data.error || "Failed to send email");
       }
 
-      showMessage('Email sent successfully!', 'success')
-      setEmail('')
+      showMessage("Email sent successfully!", "success");
+      setEmail("");
+      
+      // Show success icon flash
+      setShowSuccessIcon(true);
+      setTimeout(() => {
+        setShowSuccessIcon(false);
+      }, 1500);
     } catch (error) {
       showMessage(
-        error instanceof Error ? error.message : 'Failed to send email',
-        'error'
-      )
+        error instanceof Error ? error.message : "Failed to send email",
+        "error"
+      );
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSubmit()
+    if (e.key === "Enter") {
+      handleSubmit();
     }
-  }
+  };
 
   return (
     <>
+      <div className={`success-icon ${showSuccessIcon ? "show" : ""}`}>
+        <FaCircleCheck />
+      </div>
+
       <button
         ref={contactBtnRef}
-        className={`contact-btn ${showForm ? 'hide' : ''}`}
+        className={`contact-btn ${showForm ? "hide" : ""}`}
         onClick={handleContactClick}
       >
         Email
@@ -106,7 +118,7 @@ export default function Home() {
 
       <div
         ref={containerRef}
-        className={`email-container ${showForm ? 'show' : ''}`}
+        className={`email-container ${showForm ? "show" : ""}`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="input-wrapper">
@@ -125,7 +137,7 @@ export default function Home() {
             disabled={isSubmitting}
           >
             {isSubmitting ? (
-              '...'
+              "..."
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -137,11 +149,12 @@ export default function Home() {
             )}
           </button>
         </div>
-        <div className={`message ${message.text ? 'show' : ''} ${message.type}`}>
+        <div
+          className={`message ${message.text ? "show" : ""} ${message.type}`}
+        >
           {message.text}
         </div>
       </div>
     </>
-  )
+  );
 }
-
