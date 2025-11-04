@@ -163,14 +163,11 @@ button.submit-btn:disabled {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  width: 350px;
-  max-width: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  font-size: 4rem;
-  color: #28a745;
+  font-size: 2rem;
+  color: #666666;
   z-index: 2000;
   opacity: 0;
   transform: scale(0);
