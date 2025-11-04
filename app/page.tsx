@@ -77,7 +77,6 @@ export default function Home() {
         throw new Error(data.error || "Failed to send email");
       }
 
-      showMessage("Email sent successfully!", "success");
       setEmail("");
 
       // Show success icon flash, hide form and email button
