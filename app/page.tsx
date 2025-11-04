@@ -79,11 +79,12 @@ export default function Home() {
       showMessage("Email sent successfully!", "success");
       setEmail("");
       
-      // Show success icon flash
+      // Show success icon flash and close form
+      setShowForm(false);
       setShowSuccessIcon(true);
       setTimeout(() => {
         setShowSuccessIcon(false);
-      }, 1500);
+      }, 2000);
     } catch (error) {
       showMessage(
         error instanceof Error ? error.message : "Failed to send email",
