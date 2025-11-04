@@ -81,13 +81,13 @@ export default function Home() {
       setEmail("");
 
       // Show success icon after brief delay, hide form and email button
+      setShowForm(false);
       setTimeout(() => {
-        setShowForm(false);
         setShowSuccessIcon(true);
         setTimeout(() => {
           setShowSuccessIcon(false);
         }, 2000);
-      }, 300);
+      }, 200);
     } catch (error) {
       showMessage(
         error instanceof Error ? error.message : "Failed to send email",
@@ -118,7 +118,9 @@ export default function Home() {
 
       <button
         ref={contactBtnRef}
-        className={`contact-btn ${showForm || showSuccessIcon || isSubmitting ? "hide" : ""}`}
+        className={`contact-btn ${
+          showForm || showSuccessIcon || isSubmitting ? "hide" : ""
+        }`}
         onClick={handleContactClick}
       >
         <IoIosMail />
