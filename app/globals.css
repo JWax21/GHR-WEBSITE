@@ -105,12 +105,23 @@ button.submit-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 }
 
 button.submit-btn svg {
   width: 1.5rem;
   height: 1.5rem;
   fill: #cccccc;
+  transition: fill 0.2s ease;
+}
+
+button.submit-btn.active {
+  background-color: #666666;
+  border-color: #666666;
+}
+
+button.submit-btn.active svg {
+  fill: #ffffff;
 }
 
 button.submit-btn:active {

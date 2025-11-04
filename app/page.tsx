@@ -78,7 +78,7 @@ export default function Home() {
 
       showMessage("Email sent successfully!", "success");
       setEmail("");
-      
+
       // Show success icon flash and close form
       setShowForm(false);
       setShowSuccessIcon(true);
@@ -133,17 +133,14 @@ export default function Home() {
             required
           />
           <button
-            className="submit-btn"
+            className={`submit-btn ${email.trim() ? "active" : ""}`}
             onClick={handleSubmit}
             disabled={isSubmitting}
           >
             {isSubmitting ? (
               "..."
             ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-              >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L311.5 290H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.5L190.5 100.8c-9.4-9.4-9.4-24.6 0-33.9z" />
               </svg>
             )}
