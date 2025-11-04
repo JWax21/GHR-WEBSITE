@@ -28,9 +28,8 @@ h1 {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.75rem;
+  font-size: 1.5rem;
   color: #666666;
   background-color: transparent;
   border: none;
@@ -39,6 +38,9 @@ h1 {
   opacity: 1;
   transition: opacity 0.3s ease;
   z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .contact-btn.hide {
