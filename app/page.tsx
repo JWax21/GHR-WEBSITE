@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Home() {
   const [showForm, setShowForm] = useState(false);
@@ -79,12 +80,14 @@ export default function Home() {
 
       setEmail("");
 
-      // Show success icon flash, hide form and email button
-      setShowForm(false);
-      setShowSuccessIcon(true);
+      // Show success icon after brief delay, hide form and email button
       setTimeout(() => {
-        setShowSuccessIcon(false);
-      }, 2000);
+        setShowForm(false);
+        setShowSuccessIcon(true);
+        setTimeout(() => {
+          setShowSuccessIcon(false);
+        }, 2000);
+      }, 300);
     } catch (error) {
       showMessage(
         error instanceof Error ? error.message : "Failed to send email",
@@ -103,13 +106,19 @@ export default function Home() {
 
   return (
     <>
+      {isSubmitting && (
+        <div className="loading-icon">
+          <AiOutlineLoading3Quarters />
+        </div>
+      )}
+
       <div className={`success-icon ${showSuccessIcon ? "show" : ""}`}>
         <FaCircleCheck />
       </div>
 
       <button
         ref={contactBtnRef}
-        className={`contact-btn ${showForm || showSuccessIcon ? "hide" : ""}`}
+        className={`contact-btn ${showForm || showSuccessIcon || isSubmitting ? "hide" : ""}`}
         onClick={handleContactClick}
       >
         <IoIosMail />
