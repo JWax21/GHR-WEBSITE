@@ -29,9 +29,9 @@ h1 {
   position: fixed;
   top: 2rem;
   right: 2rem;
+  width: 4.6875rem;
   height: 3.125rem;
-  padding: 0 1rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #999999;
   background-color: transparent;
   border: 1px solid #999999;
@@ -54,9 +54,9 @@ h1 {
   position: fixed;
   top: 2rem;
   right: 2rem;
+  width: 4.6875rem;
   height: 3.125rem;
-  padding: 0 1rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #999999;
   background-color: transparent;
   border: 1px solid transparent;
@@ -194,12 +194,12 @@ button.submit-btn:disabled {
   position: fixed;
   top: 2rem;
   right: 2rem;
+  width: 4.6875rem;
   height: 3.125rem;
-  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #666666;
   background-color: transparent;
   border: 1px solid transparent;
