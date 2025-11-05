@@ -13,6 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -28,32 +29,58 @@ h1 {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  padding: 0.3rem 0.6rem;
-  font-size: 1.4rem;
-  color: #bbbbbb;
+  height: 3.125rem;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  color: #999999;
   background-color: transparent;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #999999;
   border-radius: 4px;
   cursor: pointer;
   opacity: 1;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease;
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  visibility: visible;
 }
 
 .contact-btn.hide {
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
+}
+
+.loading-icon {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  height: 3.125rem;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  color: #999999;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .email-container {
   position: fixed;
   top: 2rem;
-  right: -400px;
+  right: -450px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -78,7 +105,7 @@ h1 {
 input[type="email"] {
   padding: 1rem 4rem 1rem 1.25rem;
   font-size: 1rem;
-  border: 2px solid #cccccc;
+  border: 1px solid #cccccc;
   background-color: #ffffff;
   color: #000000;
   border-radius: 4px;
@@ -88,7 +115,7 @@ input[type="email"] {
 }
 
 input[type="email"]:focus {
-  border-color: #999999;
+  border: 1px solid #cccccc;
 }
 
 input[type="email"]::placeholder {
@@ -103,7 +130,7 @@ button.submit-btn {
   font-weight: 600;
   color: #cccccc;
   background-color: transparent;
-  border: 2px solid #cccccc;
+  border: 1px solid #cccccc;
   border-radius: 4px;
   cursor: pointer;
   display: flex;
@@ -121,7 +148,7 @@ button.submit-btn svg {
 
 button.submit-btn.active {
   background-color: #666666;
-  border-color: #666666;
+  border: 1px solid #666666;
 }
 
 button.submit-btn.active svg {
@@ -167,44 +194,24 @@ button.submit-btn:disabled {
   position: fixed;
   top: 2rem;
   right: 2rem;
-  padding: 0.35rem;
+  height: 3.125rem;
+  padding: 0 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
   color: #666666;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
   z-index: 2000;
   opacity: 0;
   transform: scale(0);
-  transition: opacity 0.4s ease,
-    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   pointer-events: none;
 }
 
 .success-icon.show {
   transform: scale(1);
   opacity: 1;
-}
-
-.loading-icon {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  padding: 0.35rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: #666666;
-  z-index: 2000;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
