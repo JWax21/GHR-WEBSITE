@@ -31,7 +31,7 @@ h1 {
   right: 2rem;
   width: 4.6875rem;
   height: 3.125rem;
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   color: #999999;
   background-color: transparent;
   border: 1px solid #999999;
@@ -56,7 +56,7 @@ h1 {
   right: 2rem;
   width: 4.6875rem;
   height: 3.125rem;
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   color: #999999;
   background-color: transparent;
   border: 1px solid transparent;
@@ -199,7 +199,7 @@ button.submit-btn:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   color: #666666;
   background-color: transparent;
   border: 1px solid transparent;
